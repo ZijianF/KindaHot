@@ -106,10 +106,20 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Idle", true);
             animator.SetBool("IsMovingForward", false);
             animator.SetBool("IsMovingBackward", false);
+            animator.SetBool("IsMovingRight", false);
+            animator.SetBool("IsMovingLeft", false);            
+        }
+
+        if (vertical == 0)
+        {
+            animator.SetBool("IsMovingForward", false);
+            animator.SetBool("IsMovingBackward", false);
         }
 
         if (vertical != 0) 
         {
+            animator.SetBool("IsMovingRight", false);
+            animator.SetBool("IsMovingLeft", false);     
             // var rotationVector = FollowTarget.transform.rotation.eulerAngles;
             // rotationVector.x = 0;
             // rotationVector.z = 0;
@@ -135,9 +145,22 @@ public class PlayerMovement : MonoBehaviour
         if (horizontal != 0)
         {
             animator.SetBool("Idle", false);
-            transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-            FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
-            Controller.SimpleMove(transform.right * MaxSpeed * horizontal);
+            if (horizontal > 0)
+            {
+                animator.SetBool("IsMovingRight", true);
+                transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                Controller.SimpleMove(transform.right * MaxSpeed * horizontal);
+            }
+
+            if (horizontal < 0)
+            {
+                animator.SetBool("IsMovingLeft", true);
+                transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                Controller.SimpleMove(transform.right * MaxSpeed * horizontal);
+            }
+            
 
         }
 
