@@ -101,6 +101,12 @@ public class PlayerMovement : MonoBehaviour
         // }
 
 
+        if (vertical == 0 && horizontal ==0)
+        {
+            animator.SetBool("Idle", true);
+            animator.SetBool("IsMovingForward", false);
+            animator.SetBool("IsMovingBackward", false);
+        }
 
         if (vertical != 0) 
         {
@@ -108,24 +114,39 @@ public class PlayerMovement : MonoBehaviour
             // rotationVector.x = 0;
             // rotationVector.z = 0;
             // transform.rotation = Quaternion.Euler(rotationVector);\
+            animator.SetBool("Idle", false);
             if(vertical > 0) 
             {
                 animator.SetBool("IsMovingForward", true);
+                transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                Controller.SimpleMove(transform.forward * MaxSpeed * vertical);
             }
-            transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-            FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
-            Controller.SimpleMove(transform.forward * MaxSpeed * vertical);
-            
+
+            if(vertical < 0)
+            {
+                animator.SetBool("IsMovingBackward", true);
+                transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                Controller.SimpleMove(transform.forward * MaxSpeed * vertical);
+            }
         }
-        
+
         if (horizontal != 0)
         {
+            animator.SetBool("Idle", false);
             transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
             FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
             Controller.SimpleMove(transform.right * MaxSpeed * horizontal);
+
         }
 
-        
+        // if(vertical != 0 || horizontal != 0) 
+        // {
+        //     float targetAngle = Mathf.Atan2(this.MovementDirection.x, this.MovementDirection.z) * Mathf.Rad2Deg;
+        //     float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref TurnSmoothSpeed, TurnSmoothTime);
+        //     transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
+        // }
 
 
 
