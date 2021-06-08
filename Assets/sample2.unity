@@ -1495,12 +1495,14 @@ MonoBehaviour:
   TurnSpeed: 15
   Controller: {fileID: 1279795641}
   Sensitivity: 1000
+  BulletTimeFactor: 0.5
   FollowTarget: {fileID: 1340708536}
   NextRotation: {x: 0, y: 0, z: 0, w: 0}
   rotationLerp: 0.5
   TurnSmoothTime: 0.1
   TurnSmoothSpeed: 0
   _move: {x: 0, y: 0}
+  ScriptHome: {fileID: 1917278828}
 --- !u!143 &1279795641
 CharacterController:
   m_ObjectHideFlags: 0
@@ -2033,6 +2035,49 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac0b09e7857660247b1477e93731de29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1917278828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1917278830}
+  - component: {fileID: 1917278829}
+  m_Layer: 0
+  m_Name: ScriptHome
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1917278829
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917278828}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ef4fede92b35a14296afd9143ea4587, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1917278830
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1917278828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 12.76732, y: 5.336451, z: 30.483078}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1950924113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1313558587066236, guid: 08f5427fe0d15ad47a5a1bb70b6156c7, type: 3}

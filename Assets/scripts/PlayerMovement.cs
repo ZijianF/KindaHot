@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.AI;
 
-
 public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private bool BulletTime = false;
@@ -19,9 +18,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private float Sensitivity = 1.0f;
 
+    [SerializeField] private float BulletTimeFactor = 0.5f;
 
-    float AccelRatePerSec;
-    float Speed;
+
 
     // Target object for the camera to follow
     public GameObject FollowTarget;
@@ -31,20 +30,35 @@ public class PlayerMovement : MonoBehaviour
     public float rotationLerp = 0.5f;
 
     public float TurnSmoothTime = 0.1f;
+
     public float TurnSmoothSpeed;
 
     public Vector2 _move;
 
     private Vector3 FacingDirection;
+
     private Vector3 MovementDirection;
 
     private Animator animator;
+
+    // ************************************
+    [SerializeField]
+    private GameObject ScriptHome;
+
+    private PublisherManager PublisherManager;
+    private BulletTimeWatcher Watcher;
 
     // Start is called before the first frame update
     void Start()
     {
         animator = GetComponentInChildren<Animator>();
         this.Controller = GetComponent<CharacterController>();
+
+        // ****************************************
+        // this.PublisherManager = GameObject.FindGameObjectWithTag("ScriptHome").GetComponent<PublisherManager>();
+        this.PublisherManager = ScriptHome.GetComponent<PublisherManager>();
+        this.PublisherManager.Subscribe(TriggeringBulletTime);
+        // Watcher = new BulletTimeWatcher()
     }
 
     public void OnMove(InputValue value)
@@ -56,11 +70,37 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        var sensitivity = this.Sensitivity;
+        var speed = this.MaxSpeed;
+        //  ****************************************
+        if(Input.GetButtonDown("Fire1"))
+        {   
+            if(this.BulletTime){
+                 PublisherManager.BulletTimeInitiator(false);
+            }
+            else{
+                PublisherManager.BulletTimeInitiator(true);
+            }
+            Debug.Log("triggered bullet time " + this.BulletTime);
+        }
+
+        if(this.BulletTime)
+        {
+            // sensitivity *= BulletTimeFactor;
+            // speed *= BulletTimeFactor;
+            SlowTimeDown();
+        }
+        else
+        {
+            BackToNoamalTime();
+        }
+
+        //  ****************************************
+
         var horizontal = Input.GetAxis("Horizontal");
         var vertical = Input.GetAxis("Vertical");
         this.MovementDirection = new Vector3(horizontal, 0.0f, vertical);
 
-        // Part 3
 
         // Setting variables for animator
         animator.SetFloat("Speed", vertical);
@@ -68,13 +108,13 @@ public class PlayerMovement : MonoBehaviour
         // transform.Rotate(Vector3.up, horizontal * this.TurnSpeed * Time.deltaTime);
 
         var horizontalMouseMovement = Input.GetAxis("Mouse X");
-        var cameraRotation = Quaternion.AngleAxis(horizontalMouseMovement  * Sensitivity * Time.deltaTime, Vector3.up);
+        var cameraRotation = Quaternion.AngleAxis(horizontalMouseMovement  * sensitivity * Time.deltaTime, Vector3.up);
 
 
         FollowTarget.transform.rotation *= cameraRotation;
 
         // Vertical rotation
-        FollowTarget.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime, Vector3.right);
+        FollowTarget.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * sensitivity * Time.deltaTime, Vector3.right);
 
         var angles = FollowTarget.transform.localEulerAngles;
         angles.z = 0;
@@ -91,14 +131,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         FollowTarget.transform.localEulerAngles = angles;
-
-
-        // Problematic
-        // if(horizontalMouseMovement != 0) 
-        // {
-        //     transform.rotation *= cameraRotation;
-        //     transform.localEulerAngles = angles;
-        // }
 
 
         if (vertical == 0 && horizontal ==0)
@@ -120,17 +152,13 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetBool("IsMovingRight", false);
             animator.SetBool("IsMovingLeft", false);     
-            // var rotationVector = FollowTarget.transform.rotation.eulerAngles;
-            // rotationVector.x = 0;
-            // rotationVector.z = 0;
-            // transform.rotation = Quaternion.Euler(rotationVector);\
             animator.SetBool("Idle", false);
             if(vertical > 0) 
             {
                 animator.SetBool("IsMovingForward", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
                 FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
-                Controller.SimpleMove(transform.forward * MaxSpeed * vertical);
+                Controller.SimpleMove(transform.forward * speed * vertical);
             }
 
             if(vertical < 0)
@@ -138,7 +166,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("IsMovingBackward", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
                 FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
-                Controller.SimpleMove(transform.forward * MaxSpeed * vertical);
+                Controller.SimpleMove(transform.forward * speed * vertical);
             }
         }
 
@@ -150,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("IsMovingRight", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
                 FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
-                Controller.SimpleMove(transform.right * MaxSpeed * horizontal);
+                Controller.SimpleMove(transform.right * speed * horizontal);
             }
 
             if (horizontal < 0)
@@ -158,77 +186,26 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("IsMovingLeft", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
                 FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
-                Controller.SimpleMove(transform.right * MaxSpeed * horizontal);
+                Controller.SimpleMove(transform.right * speed * horizontal);
             }
             
-
         }
 
-        // if(vertical != 0 || horizontal != 0) 
-        // {
-        //     float targetAngle = Mathf.Atan2(this.MovementDirection.x, this.MovementDirection.z) * Mathf.Rad2Deg;
-        //     float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref TurnSmoothSpeed, TurnSmoothTime);
-        //     transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
-        // }
+    }
 
+    private void TriggeringBulletTime(bool isOn) 
+    {
+        this.BulletTime = isOn;
+    }
 
+    private void SlowTimeDown()
+    {
+        Time.timeScale = BulletTimeFactor;
+        Time.fixedDeltaTime = Time.timeScale * .02f;
+    }
 
-
-
-
-
-
-
-        
-        // if(MovementDirection.magnitude >= 0.1f) 
-        // {
-        //     float targetAngle = Mathf.Atan2(this.MovementDirection.x, this.MovementDirection.z) * Mathf.Rad2Deg;
-        //     float smoothAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref TurnSmoothSpeed, TurnSmoothTime);
-        //     transform.rotation = Quaternion.Euler(0f, smoothAngle, 0f);
-        //     this.Controller.Move(this.MovementDirection * Time.deltaTime * MaxSpeed);
-        // }
-        
-        // // Rotate the follow target based on input.
-        // FollowTarget.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse X")  * Sensitivity * Time.deltaTime, Vector3.up);
-
-        // // Vertical rotation
-        // FollowTarget.transform.rotation *= Quaternion.AngleAxis(Input.GetAxis("Mouse Y") * Sensitivity * Time.deltaTime, Vector3.right);
-
-        // var angles = FollowTarget.transform.localEulerAngles;
-        // angles.z = 0;
-        // var angle = FollowTarget.transform.localEulerAngles.x;
-
-        // // Clamp the Up/Down rotation
-        // if (angle > 180 && angle < 300)
-        // {
-        //     angles.x = 300;
-        // }
-        // else if(angle < 180 && angle > 40)
-        // {
-        //     angles.x = 40;
-        // }
-
-        // FollowTarget.transform.localEulerAngles = angles;
-
-        // NextRotation = Quaternion.Lerp(FollowTarget.transform.rotation, NextRotation, Time.deltaTime * rotationLerp);
-
-        // animator.SetFloat("Speed", MovementDirection.magnitude);
-
-        // if(_move.x == 0 && _move.y == 0)
-        // {
-        //     NextPosition = transform.position;
-        //     return;
-        // }
-
-        // Vector3 position = (transform.forward * _move.y * MaxSpeed) + (transform.right * _move.x * MaxSpeed);
-        // NextPosition = transform.position + position;
-
-        // transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-
-        // FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
-
-        // NextRotation = Quaternion.Lerp(FollowTarget.transform.rotation, NextRotation, Time.deltaTime * rotationLerp);
-
-
+    private void BackToNoamalTime()
+    {
+        Time.timeScale = 1;
     }
 }

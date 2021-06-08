@@ -6,6 +6,7 @@ TagManager:
   tags:
   - head
   - PlayerHead
+  - ScriptHome
   layers:
   - Default
   - TransparentFX

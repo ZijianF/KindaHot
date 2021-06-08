@@ -32,18 +32,18 @@ public class EnemyController : MonoBehaviour
         RaycastHit hit;
         var rayDirection = Target.transform.position - Head.transform.TransformPoint(Vector3.zero);
         Debug.DrawRay(Head.transform.position, rayDirection * 10.0f, Color.blue);
-        Debug.Log("Player postion " + Target.transform.position.x+ " " + Target.transform.position.y + " " + Target.transform.position.z);
+        // Debug.Log("Player postion " + Target.transform.position.x+ " " + Target.transform.position.y + " " + Target.transform.position.z);
         // Debug.Log("Head postion " + Head.transform.position.x+ " " + Head.transform.position.y + " " + Head.transform.position.z);
         if (Physics.Raycast(Head.transform.position, rayDirection, out hit)) 
         {
-            Debug.Log("postion " + hit.point.x+ " " + hit.point.y + " " + hit.point.z);
+            // Debug.Log("postion " + hit.point.x+ " " + hit.point.y + " " + hit.point.z);
             bool hitPlayer = false;
             float hitDistance = Mathf.Sqrt(
                 Mathf.Pow((Target.transform.position.x - hit.point.x), 2.0f) +
                 Mathf.Pow((Target.transform.position.y - hit.point.y), 2.0f) +
                 Mathf.Pow((Target.transform.position.z - hit.point.z), 2.0f)
             );
-            Debug.Log("Distance " + hitDistance);
+            // Debug.Log("Distance " + hitDistance);
             if (hitDistance < 0.4)
             {
                 // Saw the target
