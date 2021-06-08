@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 6335624529842898385}
   - component: {fileID: 8380619230870186083}
   - component: {fileID: 4133595031408033709}
+  - component: {fileID: -5460448894890408188}
   m_Layer: 0
   m_Name: Robot_Soldier_Red
   m_TagString: Untagged
@@ -231,6 +232,24 @@ MonoBehaviour:
   - m_Rig: {fileID: 2465548862832635608}
     m_Active: 1
   m_Effectors: []
+--- !u!114 &-5460448894890408188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047724519691324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c29dc1ab099c5dd4da1eb01b6fc627c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BulletTimeFactor: 0
+  Player: {fileID: 0}
+  Target: {fileID: 0}
+  RotationSpeed: 0.5
+  RepositionRadius: 0
+  Head: {fileID: 0}
 --- !u!1 &1055265541920024
 GameObject:
   m_ObjectHideFlags: 0
@@ -615,10 +634,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.17773333
+  m_Radius: 0.17051041
   m_Height: 0.3651721
   m_Direction: 0
-  m_Center: {x: -0.00016337633, y: 0.12324563, z: 0.0009162128}
+  m_Center: {x: -0.00016337633, y: 0.116022706, z: 0.0009162128}
 --- !u!1 &1201071762216562
 GameObject:
   m_ObjectHideFlags: 0
@@ -892,7 +911,7 @@ GameObject:
   - component: {fileID: 4866435639462212}
   m_Layer: 0
   m_Name: HeadTop_End
-  m_TagString: Untagged
+  m_TagString: head
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
