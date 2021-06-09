@@ -28,8 +28,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] private GameObject Crosshair;
 
+    [SerializeField] GameObject Gun1;
+
     public GameObject MovingCamera;
     public GameObject AimCamera;
+
+    [SerializeField] GameObject Cube;
 
 
 
@@ -52,6 +56,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    private GunController GunController;
+
     // ************************************
     [SerializeField]
     private GameObject ScriptHome;
@@ -69,6 +75,8 @@ public class PlayerMovement : MonoBehaviour
         // this.PublisherManager = GameObject.FindGameObjectWithTag("ScriptHome").GetComponent<PublisherManager>();
         this.PublisherManager = ScriptHome.GetComponent<PublisherManager>();
         this.PublisherManager.Subscribe(TriggeringBulletTime);
+        GunController = Gun1.GetComponent<GunController>();
+
         // Watcher = new BulletTimeWatcher()
     }
 
@@ -81,25 +89,31 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        if(this.Dead)
+        if (Input.GetButtonDown("Fire1"))
+        {
+            GunController.Shoot();
+        }
+
+
+        if (this.Dead)
         {
             animator.SetBool("Dead", false);
             return;
         }
 
         this.Aiming = false;
-        if(Input.GetButton("Fire2"))
+        if (Input.GetButton("Fire2"))
         {
             this.Aiming = true;
         }
 
-        if(this.Aiming)
+        if (this.Aiming)
         {
             this.MovingCamera.SetActive(false);
             this.AimCamera.SetActive(true);
             this.Crosshair.SetActive(true);
-        } else if(!this.Aiming)
+        }
+        else if (!this.Aiming)
         {
             this.MovingCamera.SetActive(true);
             this.AimCamera.SetActive(false);
@@ -109,33 +123,52 @@ public class PlayerMovement : MonoBehaviour
         var sensitivity = this.Sensitivity;
         var speed = this.MaxSpeed;
         //  ****************************************
-        if(Input.GetKeyDown(KeyCode.LeftShift))
-        {   
-            if(this.BulletTime){
-                 PublisherManager.BulletTimeInitiator(false);
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (this.BulletTime)
+            {
+                PublisherManager.BulletTimeInitiator(false);
             }
-            else{
+            else
+            {
                 PublisherManager.BulletTimeInitiator(true);
             }
             Debug.Log("triggered bullet time " + this.BulletTime);
         }
-
-        if(Input.GetButtonDown("Fire2"))
+        //GunController.RenewDirection(new Vector3(0, 0, 0));
+        if (Aiming)
         {
-            this.Aiming = true;
+            Debug.DrawRay(Camera.main.transform.position, Camera.main.transform.forward, Color.blue);
+            RaycastHit hit;
+            Ray r = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+            if (Physics.Raycast(r, out hit, Mathf.Infinity))
+            {
+                Debug.Log("hit.point and collider position" + hit.point + " " + hit.collider.gameObject.transform.position);
+                //Instantiate(Cube, hit.point, Quaternion.identity);
+                GunController.RenewDirection(hit.point);//- Camera.main.transform.position);
+            }
+
         }
 
-        if(Aiming) 
-        {
-            this.AimCamera.SetActive(true);
-            this.MovingCamera.SetActive(false);
-        }else
-        {
-            this.AimCamera.SetActive(false);
-            this.MovingCamera.SetActive(true);
-        }
+        //if (Input.GetButtonDown("Fire2"))
+        //{
+        //    this.Aiming = true;
 
-        if(this.BulletTime)
+        //}
+
+
+        //if (Aiming)
+        //{
+        //    this.AimCamera.SetActive(true);
+        //    this.MovingCamera.SetActive(false);
+        //}
+        //else
+        //{
+        //    this.AimCamera.SetActive(false);
+        //    this.MovingCamera.SetActive(true);
+        //}
+
+        if (this.BulletTime)
         {
             // sensitivity *= BulletTimeFactor;
             // speed *= BulletTimeFactor;
@@ -159,7 +192,7 @@ public class PlayerMovement : MonoBehaviour
         // transform.Rotate(Vector3.up, horizontal * this.TurnSpeed * Time.deltaTime);
 
         var horizontalMouseMovement = Input.GetAxis("Mouse X");
-        var cameraRotation = Quaternion.AngleAxis(horizontalMouseMovement  * sensitivity * Time.deltaTime, Vector3.up);
+        var cameraRotation = Quaternion.AngleAxis(horizontalMouseMovement * sensitivity * Time.deltaTime, Vector3.up);
 
 
         FollowTarget.transform.rotation *= cameraRotation;
@@ -176,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
         {
             angles.x = 300;
         }
-        else if(angle < 180 && angle > 40)
+        else if (angle < 180 && angle > 40)
         {
             angles.x = 40;
         }
@@ -184,13 +217,13 @@ public class PlayerMovement : MonoBehaviour
         FollowTarget.transform.localEulerAngles = angles;
 
 
-        if (vertical == 0 && horizontal ==0)
+        if (vertical == 0 && horizontal == 0)
         {
             animator.SetBool("Idle", true);
             animator.SetBool("IsMovingForward", false);
             animator.SetBool("IsMovingBackward", false);
             animator.SetBool("IsMovingRight", false);
-            animator.SetBool("IsMovingLeft", false);            
+            animator.SetBool("IsMovingLeft", false);
         }
 
         if (vertical == 0)
@@ -199,24 +232,24 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("IsMovingBackward", false);
         }
 
-        if (vertical != 0) 
+        if (vertical != 0)
         {
             animator.SetBool("IsMovingRight", false);
-            animator.SetBool("IsMovingLeft", false);     
+            animator.SetBool("IsMovingLeft", false);
             animator.SetBool("Idle", false);
-            if(vertical > 0) 
+            if (vertical > 0)
             {
                 animator.SetBool("IsMovingForward", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
                 Controller.SimpleMove(transform.forward * speed * vertical);
             }
 
-            if(vertical < 0)
+            if (vertical < 0)
             {
                 animator.SetBool("IsMovingBackward", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
                 Controller.SimpleMove(transform.forward * speed * vertical);
             }
         }
@@ -228,7 +261,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("IsMovingRight", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
                 Controller.SimpleMove(transform.right * speed * horizontal);
             }
 
@@ -236,16 +269,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 animator.SetBool("IsMovingLeft", true);
                 transform.rotation = Quaternion.Euler(0, FollowTarget.transform.rotation.eulerAngles.y, 0);
-                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0 ,0);
+                FollowTarget.transform.localEulerAngles = new Vector3(angles.x, 0, 0);
                 Controller.SimpleMove(transform.right * speed * horizontal);
             }
-            
+
         }
         // TakeDamage();
 
     }
 
-    private void TriggeringBulletTime(bool isOn) 
+    private void TriggeringBulletTime(bool isOn)
     {
         this.BulletTime = isOn;
     }
@@ -264,7 +297,7 @@ public class PlayerMovement : MonoBehaviour
     public void TakeDamage()
     {
         this.Health -= 1;
-        if(this.Health <= 0)
+        if (this.Health <= 0)
         {
             this.Dead = true;
             EnterDeathAnimation();
@@ -286,9 +319,10 @@ public class PlayerMovement : MonoBehaviour
         return this.Dead;
     }
 
-    void OnControllerColliderHit(ControllerColliderHit hit){
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
         Debug.Log("hit " + hit.collider.gameObject.name);
-        if(hit.collider.gameObject.name == "goal")
+        if (hit.collider.gameObject.name == "goal")
         {
             Debug.Log("it's HIM!");
             hit.transform.SendMessage("Touched", SendMessageOptions.DontRequireReceiver);
