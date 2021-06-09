@@ -32,6 +32,8 @@ public class EnemyController : MonoBehaviour
 
     private EnemyGunController GunController;
 
+    private bool shoot;
+
 
     // Should leave space for weapon prefab;
 
@@ -43,13 +45,14 @@ public class EnemyController : MonoBehaviour
         this.transform.position = spawnLocation;
         // Head = GameObject.FindGameObjectWithTag("head");
         // Target = GameObject.Find("Player/The Adventurer Blake/armature/Bone/hips/Spine/Spine1/chest/neck/head");
-
         GunController = Gun1.GetComponent<EnemyGunController>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetButton("Mouse1"))
+            shoot = true;
         this.InLineOfSight = false;// reset line of sight
         if (this.Dead)
         {
