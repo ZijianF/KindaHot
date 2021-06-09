@@ -248,8 +248,12 @@ MonoBehaviour:
   Player: {fileID: 0}
   Target: {fileID: 0}
   RotationSpeed: 5
-  RepositionRadius: 0
-  Head: {fileID: 0}
+  SpawnRadius: 0
+  Head: {fileID: 1313558587066236}
+  Weapon: {fileID: 0}
+  Health: 1
+  Dead: 0
+  ShowBot: 0
 --- !u!1 &1055265541920024
 GameObject:
   m_ObjectHideFlags: 0

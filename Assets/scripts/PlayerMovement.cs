@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private bool BulletTime = false;
 
+    [SerializeField] private bool Aiming = false;
+
     [SerializeField] private float MaxSpeed = 0.005f;
     // The time take the character accelerate from still to max speed.
     [SerializeField] private float TimeZeroToMax = 0.5f;
@@ -19,6 +21,15 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float Sensitivity = 1.0f;
 
     [SerializeField] private float BulletTimeFactor = 0.5f;
+
+    [SerializeField] private int Health = 5;
+
+    [SerializeField] private bool Dead = false;
+
+    [SerializeField] private GameObject Crosshair;
+
+    public GameObject MovingCamera;
+    public GameObject AimCamera;
 
 
 
@@ -70,10 +81,35 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+        if(this.Dead)
+        {
+            animator.SetBool("Dead", false);
+            return;
+        }
+
+        this.Aiming = false;
+        if(Input.GetButton("Fire2"))
+        {
+            this.Aiming = true;
+        }
+
+        if(this.Aiming)
+        {
+            this.MovingCamera.SetActive(false);
+            this.AimCamera.SetActive(true);
+            this.Crosshair.SetActive(true);
+        } else if(!this.Aiming)
+        {
+            this.MovingCamera.SetActive(true);
+            this.AimCamera.SetActive(false);
+            this.Crosshair.SetActive(false);
+        }
+
         var sensitivity = this.Sensitivity;
         var speed = this.MaxSpeed;
         //  ****************************************
-        if(Input.GetButtonDown("Fire1"))
+        if(Input.GetKeyDown(KeyCode.LeftShift))
         {   
             if(this.BulletTime){
                  PublisherManager.BulletTimeInitiator(false);
@@ -82,6 +118,21 @@ public class PlayerMovement : MonoBehaviour
                 PublisherManager.BulletTimeInitiator(true);
             }
             Debug.Log("triggered bullet time " + this.BulletTime);
+        }
+
+        if(Input.GetButtonDown("Fire2"))
+        {
+            this.Aiming = true;
+        }
+
+        if(Aiming) 
+        {
+            this.AimCamera.SetActive(true);
+            this.MovingCamera.SetActive(false);
+        }else
+        {
+            this.AimCamera.SetActive(false);
+            this.MovingCamera.SetActive(true);
         }
 
         if(this.BulletTime)
@@ -190,6 +241,7 @@ public class PlayerMovement : MonoBehaviour
             }
             
         }
+        // TakeDamage();
 
     }
 
@@ -207,5 +259,39 @@ public class PlayerMovement : MonoBehaviour
     private void BackToNoamalTime()
     {
         Time.timeScale = 1;
+    }
+
+    public void TakeDamage()
+    {
+        this.Health -= 1;
+        if(this.Health <= 0)
+        {
+            this.Dead = true;
+            EnterDeathAnimation();
+        }
+    }
+
+    private void EnterDeathAnimation()
+    {
+        animator.SetBool("Idle", false);
+        animator.SetBool("IsMovingForward", false);
+        animator.SetBool("IsMovingBackward", false);
+        animator.SetBool("IsMovingRight", false);
+        animator.SetBool("IsMovingLeft", false);
+        animator.SetBool("Dead", true);
+    }
+
+    public bool IsDead()
+    {
+        return this.Dead;
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit){
+        Debug.Log("hit " + hit.collider.gameObject.name);
+        if(hit.collider.gameObject.name == "goal")
+        {
+            Debug.Log("it's HIM!");
+            hit.transform.SendMessage("Touched", SendMessageOptions.DontRequireReceiver);
+        }
     }
 }

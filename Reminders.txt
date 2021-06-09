@@ -20,3 +20,6 @@ Health, Stamina, Map (maybe just use free assets at this point) Write Doc
 Game logic (including UI, menu, ending)
 Levels can use publisher system (but really just need change player's script)
 Test play and levels (difficulties)
+
+https://www.youtube.com/watch?v=537B1kJp9YQ
+5:20 camera impulse signal setup
