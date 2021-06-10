@@ -109,4 +109,4 @@ like structure in order to find its trophy.
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
 
 ## Game Feel
-Zijian: A lot of time was spent on the camera to make it feel interactive. Most of the time, it remains some distance and gives the player a wider field of view to better see the environment. When the player is aiming, view will switch to a secondary camera that has a narrower field of view an more zoomed in, it lets the player better focus on aiming. 
+* Zijian: A lot of time was spent on the camera to make it feel interactive. Most of the time, it remains some distance and gives the player a wider field of view to better see the environment. When the player is aiming, view will switch to a secondary camera that has a narrower field of view an more zoomed in, it lets the player better focus on aiming. 
