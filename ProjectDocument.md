@@ -39,7 +39,7 @@ The Bullet Time (slow motion) feature was implemented by slowing down whole game
 **List your assets including their sources and licenses.**
 Assets used:
 * [Main character model](https://assetstore.unity.com/packages/3d/characters/humanoids/adventurer-blake-158728)
-* [rossHair](ttps://assetstore.unity.com/packages/2d/gui/icons/crosshairs-plus-139902)
+* [crossHair](https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-plus-139902)
 * [nemy robot soldier model](https://assetstore.unity.com/packages/3d/characters/robots/robot-soldier-142438)
 * Animation Rigging ,Unity Asset Store, copyright © 2020 Unity Technologies ApS
 * Cinemachine,Unity Asset Store, copyright © 2020 Unity Technologies ApS
