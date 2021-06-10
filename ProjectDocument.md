@@ -14,8 +14,6 @@ Slowing time: Press left shift key on keyboard to slow down time.
 Player is encouraged to use the ability of slowing down time and covers on the map to isolate enemies and take them down one by one.
 
 
-**If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
-
 # Main Roles #
 
 **Please consider that Since we only have two member on the team, we often will have to do tasks that belong to the same role. Detailed work will be described in the section**
@@ -29,7 +27,6 @@ Cross hair only shows up when player hold right click to aim. It gives the playe
 
 ## Movement/Physics
 
-**Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?** 
 There are two parts of this section. Both of us have done some parts for this section
 * Zijian: The player's movement is based on a script combining with the unity Character Contoller object. (We found out it is not the most convinent way of implementing this).
 The Bullet Time (slow motion) feature was implemented by slowing down whole game's time scale and at the same time, gives the main character a little speed boost to emphasize the strength of the ability.
@@ -103,8 +100,6 @@ like structure in order to find its trophy.
 **Include links to your presskit materials and trailer.**
 
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
-
-
 
 ## Game Feel
 Zijian: A lot of time was spent on the camera to make it feel interactive. Most of the time, it remains some distance and gives the player a wider field of view to better see the environment. When the player is aiming, view will switch to a secondary camera that has a narrower field of view an more zoomed in, it lets the player better focus on aiming. 
