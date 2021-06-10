@@ -7,7 +7,12 @@
 ## Gameplay Explanation ##
 
 **In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
-the game
+The game's goal is to get to the final destination without dying to enemies.
+Controlls:'
+Moving: "WASD" keys on keyboard.
+Aiming and Shooting: Hold Mouse right click to aim, and left click to shoot where the crosshair points at.
+Slowing time: Press left shift key on keyboard to slow down time.
+Player is encouraged to use the ability of slowing down time and covers on the map to isolate enemies and take them down one by one.
 
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
@@ -28,6 +33,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 ## User Interface
 
 **Describe your user interface and how it relates to gameplay. This can be done via the template.**
+Zijian Feng: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
 
 ## Movement/Physics
 
