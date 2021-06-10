@@ -27,8 +27,7 @@ Player is encouraged to use the ability of slowing down time and covers on the m
 * Zijian: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
 The starting menu, "death menu", and "win menu" lets the player make their decision after triggered certain state of the game. For example, when the main character dies, player can choose either try again or quit back to the main menu.
 Cross hair only shows up when player hold right click to aim. It gives the players a better idea of exactly where the bullets will go and therefore enhance the controll of the game.
-* Yuxuan: The physics of bullets are controlled by individually attached monoscripts, where potential new features regarding bullet-blocking can be added. Such as stoping the
-bullets competely, deflecting the bullets by applying forces or even turn the bullets back to where they come from. 
+
 
 
 ## Movement/Physics
@@ -36,6 +35,8 @@ bullets competely, deflecting the bullets by applying forces or even turn the bu
 There are two parts of this section. Both of us have done some parts for this section
 * Zijian: The player's movement is based on a script combining with the unity Character Contoller object. (We found out it is not the most convinent way of implementing this).
 The Bullet Time (slow motion) feature was implemented by slowing down whole game's time scale and at the same time, gives the main character a little speed boost to emphasize the strength of the ability.
+* Yuxuan: The physics of bullets are controlled by individually attached monoscripts, where potential new features regarding bullet-blocking can be added, such as stoping the
+bullets competely, deflecting the bullets by applying forces or even turn the bullets back to where they come from. 
 
 ## Animation and Visuals
 
