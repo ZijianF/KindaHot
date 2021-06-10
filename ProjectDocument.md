@@ -52,6 +52,7 @@ Assets used:
 * [PBR low poly Magine Gun MG61](https://assetstore.unity.com/packages/3d/pbr-low-poly-magine-gun-mg61-91261)
 * [Sci-Fi Pistol #1](https://assetstore.unity.com/packages/3d/props/guns/sci-fi-pistol-1-141442)
 * [12x70 Rem Ammo Box](https://assetstore.unity.com/packages/3d/props/weapons/12x70-rem-ammo-box-193342)
+* [Spas 12 ShotGun](https://www.cgtrader.com/items/2116878/download-pagehttps://www.cgtrader.com/items/2116878/download-page)
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
 * Zijian: I tried to make the main character's animation match his action.
