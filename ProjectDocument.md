@@ -50,9 +50,14 @@ Assets used:
 * [12x70 Rem Ammo Box](https://assetstore.unity.com/packages/3d/props/weapons/12x70-rem-ammo-box-193342)
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
-We try to make the main character's animation match his action.
+Zijian: I tried to make the main character's animation match his action.
 Using of the robot's model suits better with the fictional theme.
-guns: put something here
+Yuxuan: Guns in this project were mostly scrapped from unity store and 3d websites. The art style of the guns should correspond to that of
+gunholders. Animations of the guns weree done separately in Blender where the models will be rigged and animated. Particle system are imported
+and later combined with prefabs. The characters are recreated after conbining with the gun prefabs. The most time consuming part was to align the
+transform and scale factor for weapons in local spaces. Though it seems now more intuitive, it was a rabbit hole to get hold of it. 
+
+
 Due to shortage of time, we did not have much time to polish the game and visual is one of its biggest weaknesses.
 
 ## Input
@@ -89,6 +94,8 @@ These states are managed by a few scripts that keep track of different objects.
 
 ## Narrative Design
 
+Yuxuan: One sketched design was to drop the player inside a Fallout, "tomPunk" style of setting, where the character needs to go down, and shoot his way through a vault
+like structure in order to find its trophy.
 **Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
 
 ## Press Kit and Trailer
