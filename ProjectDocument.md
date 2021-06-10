@@ -6,7 +6,6 @@
 
 ## Gameplay Explanation ##
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
 The game's goal is to get to the final destination without dying to enemies.
 Controlls:'
 Moving: "WASD" keys on keyboard.
