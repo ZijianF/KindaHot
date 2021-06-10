@@ -22,7 +22,7 @@ Player is encouraged to use the ability of slowing down time and covers on the m
 
 ## User Interface
 
-Zijian: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
+* Zijian: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
 The starting menu, "death menu", and "win menu" lets the player make their decision after triggered certain state of the game. For example, when the main character dies, player can choose either try again or quit back to the main menu.
 Cross hair only shows up when player hold right click to aim. It gives the players a better idea of exactly where the bullets will go and therefore enhance the controll of the game.
 
@@ -31,7 +31,7 @@ Cross hair only shows up when player hold right click to aim. It gives the playe
 
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?** 
 There are two parts of this section. Both of us have done some parts for this section
-Zijian: The player's movement is based on a script combining with the unity Character Contoller object. (We found out it is not the most convinent way of implementing this).
+* Zijian: The player's movement is based on a script combining with the unity Character Contoller object. (We found out it is not the most convinent way of implementing this).
 The Bullet Time (slow motion) feature was implemented by slowing down whole game's time scale and at the same time, gives the main character a little speed boost to emphasize the strength of the ability.
 
 ## Animation and Visuals
@@ -50,9 +50,9 @@ Assets used:
 * [12x70 Rem Ammo Box](https://assetstore.unity.com/packages/3d/props/weapons/12x70-rem-ammo-box-193342)
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
-Zijian: I tried to make the main character's animation match his action.
+* Zijian: I tried to make the main character's animation match his action.
 Using of the robot's model suits better with the fictional theme.
-Yuxuan: Guns in this project were mostly scrapped from unity store and 3d websites. The art style of the guns should correspond to that of
+* Yuxuan: Guns in this project were mostly scrapped from unity store and 3d websites. The art style of the guns should correspond to that of
 gunholders. Animations of the guns weree done separately in Blender where the models will be rigged and animated. Particle system are imported
 and later combined with prefabs. The characters are recreated after conbining with the gun prefabs. The most time consuming part was to align the
 transform and scale factor for weapons in local spaces. Though it seems now more intuitive, it was a rabbit hole to get hold of it. 
@@ -70,7 +70,7 @@ Slowing time: Press left shift key on keyboard to slow down time.
 The game currently only supports above imput method.
 
 ## Game Logic
-Zijian: Except the starting menu scene (pre start state), the game has three states: 
+* Zijian: Except the starting menu scene (pre start state), the game has three states: 
 These states are managed by a few scripts that keep track of different objects.
   1. Playing state: player is free to move around and fight with enemies. During this state of the game, player's health and final destination field's state will be tracked to determine whether the player failed or passed the level.
   2. When the player's health points are emptied, a menu will be shown on screen to ask if the player want to try again or go back to the main menu.
@@ -94,7 +94,7 @@ These states are managed by a few scripts that keep track of different objects.
 
 ## Narrative Design
 
-Yuxuan: One sketched design was to drop the player inside a Fallout, "tomPunk" style of setting, where the character needs to go down, and shoot his way through a vault
+* Yuxuan: One sketched design was to drop the player inside a Fallout, "tomPunk" style of setting, where the character needs to go down, and shoot his way through a vault
 like structure in order to find its trophy.
 **Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
 
