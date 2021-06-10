@@ -18,40 +18,52 @@ Player is encouraged to use the ability of slowing down time and covers on the m
 
 # Main Roles #
 
-Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
-
-Below is a template for you to highlight items of your work. These provide the evidence needed for your work to be evaluated. Try to have at least 4 such descriptions. They will be assessed on the quality of the underlying system and how they are linked to course content. 
-
-*Short Description* - Long description of your work item that includes how it is relevant to topics discussed in class. [link to evidence in your repository](https://github.com/dr-jam/ECS189L/edit/project-description/ProjectDocumentTemplate.md)
-
-Here is an example:  
-*Procedural Terrain* - The background of the game consists of procedurally-generated terrain that is produced with Perlin noise. This terrain can be modified by the game at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. [The PCG terrain generation script](https://github.com/dr-jam/CameraControlExercise/blob/513b927e87fc686fe627bf7d4ff6ff841cf34e9f/Obscura/Assets/Scripts/TerrainGenerator.cs#L6).
-
-You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
+**Please consider that Since we only have two member on the team, we often will have to do tasks that belong to the same role. Detailed work will be described in the section**
 
 ## User Interface
 
-Zijian Feng: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
+Zijian: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
+The starting menu, "death menu", and "win meny" lets the player make their decision after triggered certain state of the game. For example, when the main character dies, player can choose either try again or quit back to the main menu.
+Cross hair only shows up when player hold right click to aim. It gives the players a better idea of exactly where the bullets will go and therefore enhance the controll of the game.
+
 
 ## Movement/Physics
 
 **Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
+There are two parts of this section. Both of us have done some parts for this section
+Zijian: The player's movement is based on a script combining with the unity Character Contoller object. (We found out it is not the most convinent way of implementing this).
+The Bullet Time (slow motion) feature was implemented by slowing down whole game's time scale and at the same time, gives the main character a little speed boost to emphasize the strength of the ability.
 
 ## Animation and Visuals
 
 **List your assets including their sources and licenses.**
+Assets used:
+Main character model: https://assetstore.unity.com/packages/3d/characters/humanoids/adventurer-blake-158728
+CrossHair: https://assetstore.unity.com/packages/2d/gui/icons/crosshairs-plus-139902
+Enemy robot soldier model: https://assetstore.unity.com/packages/3d/characters/robots/robot-soldier-142438
+Guns and bullet model: 
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
+We try to make the main character's animation match his action.
+Using of the robot's model suits better with the fictional theme.
+guns: put something here
+Due to shortage of time, we did not have much time to polish the game and visual is one of its biggest weaknesses.
 
 ## Input
+**This part is mainly implemented by Zijian.**
+The Defualt input configuration is as such:
+Moving: "WASD" keys on keyboard.
+Aiming and Shooting: Hold Mouse right click to aim, and left click to shoot where the crosshair points at.
+Slowing time: Press left shift key on keyboard to slow down time.
 
-**Describe the default input configuration.**
-
-**Add an entry for each platform or input style your project supports.**
+The game currently only supports above imput method.
 
 ## Game Logic
-
-**Document what game states and game data you managed and what design patterns you used to complete your task.**
+Zijian: Except the starting menu scene (pre start state), the game has three states: 
+These states are managed by a few scripts that keep track of different objects.
+  1. Playing state: player is free to move around and fight with enemies. During this state of the game, player's health and final destination field's state will be tracked to determine whether the player failed or passed the level.
+  2. When the player's health points are emptied, a menu will be shown on screen to ask if the player want to try again or go back to the main menu.
+  3. When the player manages to touch the final destination field without dying to enemies, the game will congrats the player for beating the level and let player go back to the main menu. 
 
 # Sub-Roles
 
