@@ -3,7 +3,10 @@
 ## Summary ##
 
 **A paragraph-length pitch for your game.**
-
+ Are you annoyed by people shooting at you right around the conner? Are you tired of simple point and shoot featureless COD shooting mechanism? 
+Hear! Hear!We have a "Max-Payne" inspired tps shooting game, but the bullets can be manuvered like the game "Control". Your goal is to get through the maze like
+tunnel until you get to the trophy. The closer you are to the gem the more heavily staffed security are presented. Your job is to utilize your ability and get through 
+pass them. You can be as sneaky as possible, or face off the enemies. But be advised that their guns are more advanced than yours. 
 ## Gameplay Explanation ##
 
 The game's goal is to get to the final destination without dying to enemies.
@@ -23,6 +26,8 @@ Player is encouraged to use the ability of slowing down time and covers on the m
 * Zijian: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
 The starting menu, "death menu", and "win menu" lets the player make their decision after triggered certain state of the game. For example, when the main character dies, player can choose either try again or quit back to the main menu.
 Cross hair only shows up when player hold right click to aim. It gives the players a better idea of exactly where the bullets will go and therefore enhance the controll of the game.
+* Yuxuan: The physics of bullets are controlled by individually attached monoscripts, where potential new features regarding bullet-blocking can be added. Such as stoping the
+bullets competely, deflecting the bullets by applying forces or even turn the bullets back to where they come from. 
 
 
 ## Movement/Physics
