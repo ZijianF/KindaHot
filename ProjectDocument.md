@@ -7,7 +7,7 @@
 Are you annoyed by people shooting at you right around the conner? Are you tired of simple point and shoot featureless COD shooting mechanism? 
 Hear! Hear!We have a "Max-Payne" inspired tps shooting game, but the bullets can be manuvered like the game "Control". Your goal is to get through the maze like
 tunnel until you get to the trophy. The closer you are to the gem the more heavily staffed security are presented. Your job is to utilize your ability and get through 
-pass them. You can be as sneaky as possible, or face off the enemies. But be advised that their guns are more advanced than yours. 
+or pass them. You can be as sneaky as possible, or face off the enemies. But be advised that their guns are more advanced than yours. 
 ## Gameplay Explanation ##
 
 The game's goal is to get to the final destination without dying to enemies.
