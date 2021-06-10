@@ -98,7 +98,7 @@ These states are managed by a few scripts that keep track of different objects.
 
 ## Narrative Design
 
-* Yuxuan: One sketched design was to drop the player inside a Fallout, "tomPunk" style of setting, where the character needs to go down, and shoot his way through a vault
+* Yuxuan: One sketched design was to drop the player inside a Fallout, "atomPunk" style of setting, where the character needs to go down, and shoot his way through a vault
 like structure in order to find its trophy.
 
 
