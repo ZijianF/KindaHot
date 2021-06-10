@@ -58,7 +58,7 @@ Using of the robot's model suits better with the fictional theme.
 * Yuxuan: Guns in this project were mostly scrapped from unity store and 3d websites. The art style of the guns should correspond to that of
 gunholders. Animations of the guns were done separately in Blender where the models will be rigged and animated. Particle system are imported
 and later combined with prefabs. The characters are recreated after conbining with the gun prefabs. The most time consuming part was to align the
-transform and scale factor for weapons in local spaces. Though it seems now more intuitive, it was a rabbit hole to get hold of it. 
+transform and scale factor for weapons in local spaces. Though it seems now more intuitive, it was a rabbit hole to get hold of its idea. 
 
 
 Due to shortage of time, we did not have much time to polish the game and visual is one of its biggest weaknesses.
