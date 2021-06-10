@@ -16,7 +16,7 @@ Player is encouraged to use the ability of slowing down time and covers on the m
 
 # Main Roles #
 
-**Please consider that Since we only have two member on the team, we often will have to do tasks that belong to the same role. Detailed work will be described in the section**
+**Please consider that since we only have two member on the team, we often will have to do tasks that belong to the same role. Detailed work will be described in the section**
 
 ## User Interface
 
