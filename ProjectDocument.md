@@ -23,7 +23,7 @@ Player is encouraged to use the ability of slowing down time and covers on the m
 ## User Interface
 
 Zijian: Implemented the starting menu, menu after death, and meny after achieving the goal. Also implemented the cross hair showing up while aiming.
-The starting menu, "death menu", and "win meny" lets the player make their decision after triggered certain state of the game. For example, when the main character dies, player can choose either try again or quit back to the main menu.
+The starting menu, "death menu", and "win menu" lets the player make their decision after triggered certain state of the game. For example, when the main character dies, player can choose either try again or quit back to the main menu.
 Cross hair only shows up when player hold right click to aim. It gives the players a better idea of exactly where the bullets will go and therefore enhance the controll of the game.
 
 
@@ -94,5 +94,4 @@ These states are managed by a few scripts that keep track of different objects.
 
 
 ## Game Feel
-
-**Document what you added to and how you tweaked your game to improve its game feel.**
+Zijian: A lot of time was spent on the camera to make it feel interactive. Most of the time, it remains some distance and gives the player a wider field of view to better see the environment. When the player is aiming, view will switch to a secondary camera that has a narrower field of view an more zoomed in, it lets the player better focus on aiming. 
